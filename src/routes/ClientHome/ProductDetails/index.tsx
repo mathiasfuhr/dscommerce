@@ -3,10 +3,13 @@ import ButtonInverse from "../../../components/ButtonInverse";
 import ButtonPrimary from "../../../components/ButtonPrimary";
 import ProductDetailsCard from "../../../components/ProductDetailsCard";
 import * as productService from "../../../services/product-service";
-
-const product = productService.findById(2);
+import { Link, useParams } from "react-router-dom";
 
 function ProductDetails() {
+  const params = useParams();
+
+  const product = productService.findById(Number(params.productId));
+
   return (
     <main>
       <section id="product-details-section" className="dsc-container">
@@ -14,7 +17,9 @@ function ProductDetails() {
 
         <div className="dsc-btn-page-container">
           <ButtonPrimary text="Comprar" />
-          <ButtonInverse text="Início" />
+          <Link to="/">
+            <ButtonInverse text="Início" />
+          </Link>
         </div>
       </section>
     </main>
